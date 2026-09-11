@@ -9,7 +9,7 @@ const wenchuang2 = `${B}wenchuang-2.jpg`
 export const profile = {
   name: '胡彦彬',
   nameEn: 'Hu Yanbin',
-  tagline: '文化产业管理专业 · 内容 / 活动运营实战 · 重度社媒玩家',
+  tagline: '文化产业管理专业 · 内容 / 活动运营实战 · 品牌与文创策划',
   email: '1482963495@qq.com',
   phone: '13538980021',
   birth: '2005.02',
@@ -17,7 +17,7 @@ export const profile = {
   // 个人介绍：一句一段
   introLines: [
     '文化产业管理专业在读，拥有 3 段内容 / 活动运营实战经历。',
-    '深度理解小红书、B 站等内容生态与流量分发逻辑，擅长从数据中提炼用户偏好、将热点转化为适配游戏卖点的内容创意。',
+    '深度理解小红书、B 站等内容生态与流量分发逻辑，擅长从数据中提炼用户偏好，将热点转化为契合品牌调性、适配产品卖点的内容创意。',
     '长期关注 AI 工具在内容生产中的应用，乐于用新方法提效。',
   ],
   education: {
@@ -196,62 +196,39 @@ export const portfolio = {
   },
 }
 
-// 游戏经历（个人画像，按品类分组）
-export const gaming = {
-  summary:
-    '10 多年游戏经历，覆盖换装、乙女向、开放世界 RPG、卡牌与 ACT 等品类，日常关注游戏 UCG 内容、游戏 IP 联动、潮玩文创等跨赛道品牌合作活动。',
-  categories: [
-    {
-      cat: '换装游戏',
-      items: [
-        {
-          name: '暖暖系列',
-          note: '暖暖环游世界 / 奇迹暖暖 / 闪耀暖暖 / 无限暖暖 · 无限暖暖满级，PC 端 200h+、安卓端 1000h+，累计充值 200+ 元（主要用于版本礼包），剧情已推进至最新章节',
-        },
-      ],
-    },
-    {
-      cat: '乙女向游戏',
-      items: [
-        { name: '恋与制作人', note: '70 级+ · 总游玩时长 500h+' },
-      ],
-    },
-    {
-      cat: '开放世界 RPG',
-      items: [
-        { name: '无限暖暖', note: '满级 · 大世界探索体验详见「换装游戏」' },
-        { name: '原神', note: '40 级+ · 游玩时长 500h+ · 蒙德 / 璃月 / 至冬剧情推进完毕' },
-        { name: '洛克王国：世界', note: '50 级+ · 游玩时长 800h+' },
-      ],
-    },
-    {
-      cat: '卡牌游戏',
-      items: [
-        { name: '苏丹的游戏', note: '游玩时长 300h+ · 达成约 50 种结局' },
-      ],
-    },
-    {
-      cat: 'ACT 游戏',
-      items: [
-        { name: '双人成行', note: '全通关' },
-      ],
-    },
-  ],
-}
-
 // 技能 / 自我评价（用于搜索命中 & 关于页补充）
+// lines：一句一段，分号结尾
 export const skills = [
   {
     group: '内容能力',
-    text: '熟悉剪映、PR 等视频剪辑工具以及 PS、美图秀秀、秀米、可画等制图工具；重度社媒用户，深度理解小红书、B 站各平台内容调性、流量分发逻辑与用户生态，网感好，能快速响应热点并转化为适配游戏卖点的内容创意。',
+    lines: [
+      '熟悉剪映、PR 等视频剪辑工具，以及 PS、美图秀秀、秀米、可画等制图工具；',
+      '重度社媒用户，深度理解小红书、B 站等平台的内容调性、流量分发逻辑与用户生态；',
+      '网感好，能快速响应热点，并将其转化为契合品牌与产品卖点的内容创意。',
+    ],
   },
   {
     group: 'AI 工具使用',
-    text: '长期关注 AI 工具在内容生产中的应用以及行业新动态，熟悉 DeepSeek、豆包、Kimi 等主流模型的高效用法，熟悉豆包、即梦等图文 / 视频 AIGC 工具的使用。',
+    lines: [
+      '长期关注 AI 工具在内容生产中的应用，以及行业新动态；',
+      '熟悉 DeepSeek、豆包、Kimi、WorkBuddy 等主流模型的高效用法；',
+      '熟悉豆包、即梦等图文 / 视频 AIGC 工具的使用。',
+    ],
   },
   {
     group: '技能掌握',
-    text: '雅思 7；熟练运用飞书等协同工具；熟练使用 Excel（VLOOKUP / 数据透视表 / 图表）。',
+    lines: [
+      '雅思 7，熟练掌握英语听说读写能力；',
+      '熟练掌握钉钉、飞书、WPS 文档等协同工具的应用；',
+      '熟练使用 Excel（VLOOKUP / 数据透视表 / 图表），具备数据处理与分析能力，有效支持决策优化。',
+    ],
+  },
+  {
+    group: '协调沟通',
+    lines: [
+      '严谨细致，善于沟通交流；',
+      '能高效处理多线程任务，具备良好的跨团队协作意识。',
+    ],
   },
 ]
 
@@ -286,19 +263,8 @@ export const searchSections = [
   { id: 'project', label: '项目经历', text: listText(projects) },
   { id: 'campus', label: '校园经历', text: [...campus, portfolio].map(itemText).join(' ') },
   {
-    id: 'gaming',
-    label: '游戏经历',
-    text: [
-      gaming.summary,
-      ...gaming.categories.flatMap((c) => [
-        c.cat,
-        ...c.items.map((t) => `${t.name} ${t.note}`),
-      ]),
-    ].join(' '),
-  },
-  {
     id: 'skills',
     label: '技能与评价',
-    text: skills.map((s) => `${s.group} ${s.text}`).join(' '),
+    text: skills.map((s) => `${s.group} ${s.lines.join(' ')}`).join(' '),
   },
 ]
