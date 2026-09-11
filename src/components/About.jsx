@@ -1,5 +1,5 @@
 import Highlight from './Highlight'
-import { profile, gaming, skills } from '../data/resume'
+import { profile, skills } from '../data/resume'
 
 const portraitImg = `${import.meta.env.BASE_URL || './'}portrait.jpg`
 
@@ -63,40 +63,18 @@ export default function About({ query }) {
           </div>
         </div>
 
-        {/* 游戏经历 + 技能评价 */}
-        <div className="split-2" style={{ marginTop: 'clamp(60px,7vw,110px)' }}>
-          <div id="gaming">
-            <div className="mini-title">Game Experience · 游戏经历</div>
-            <p style={{ marginTop: 14, color: 'var(--ink-2)', fontSize: 15.5 }}>
-              <Highlight text={gaming.summary} query={query} />
-            </p>
-            <div className="games-cats">
-              {gaming.categories.map((g) => (
-                <div className="game-cat" key={g.cat}>
-                  <div className="gc-name">
-                    <Highlight text={g.cat} query={query} />
-                  </div>
-                  {g.items.map((t) => (
-                    <div className="game-row" key={t.name}>
-                      <span className="gn"><Highlight text={t.name} query={query} /></span>
-                      <span className="gnt"><Highlight text={t.note} query={query} /></span>
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div id="skills">
-            <div className="mini-title">Skills & Self · 技能与评价</div>
-            <div className="skills-block">
-              {skills.map((s) => (
-                <div className="skill-item" key={s.group}>
-                  <div className="sg">{s.group}</div>
-                  <p className="st"><Highlight text={s.text} query={query} /></p>
-                </div>
-              ))}
-            </div>
+        {/* 技能与评价 */}
+        <div id="skills" style={{ marginTop: 'clamp(60px,7vw,110px)' }}>
+          <div className="mini-title">Skills & Self · 技能与评价</div>
+          <div className="skills-grid">
+            {skills.map((s) => (
+              <div className="skill-item" key={s.group}>
+                <div className="sg">{s.group}</div>
+                {s.lines.map((l, i) => (
+                  <p className="st" key={i}><Highlight text={l} query={query} /></p>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
       </div>
