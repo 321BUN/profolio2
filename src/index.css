@@ -759,3 +759,38 @@ mark.hl {
   .about-facts { grid-template-columns: 1fr; }
   .search-box { width: 100%; }
 }
+
+/* =========================================================
+   文创详情页改版：图库 → PPT 原版式 → 视频 → 手册浓缩概览
+   ========================================================= */
+.wd-pages.wd-pages-compact {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 10px;
+  max-width: none;
+}
+.wd-page-sm { border-radius: 8px; box-shadow: none; border-color: var(--line); transition: border-color 0.3s var(--ease), transform 0.3s var(--ease); }
+.wd-page-sm img { width: 100%; aspect-ratio: 700 / 977; object-fit: cover; display: block; }
+.wd-page-sm figcaption {
+  right: 5px; bottom: 5px; font-size: 10px; padding: 2px 6px; border-radius: 5px;
+  letter-spacing: 0.04em;
+}
+.wd-page-sm:hover { border-color: var(--line-strong); transform: translateY(-2px); }
+
+@media (max-width: 1100px) {
+  .wd-pages.wd-pages-compact { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
+@media (max-width: 680px) {
+  .wd-pages.wd-pages-compact { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.wd-ppt-slide {
+  flex: 1; min-width: 0;
+  border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+  background: var(--surface-2);
+  display: flex; align-items: center; justify-content: center;
+  animation: wdFade 0.35s var(--ease);
+}
+.wd-ppt-slide img { width: 100%; display: block; cursor: zoom-in; }
+.wd-ppt .wd-ppt-no { text-align: center; margin-top: 14px; }
+.wd-ppt-dots { justify-content: center; }

@@ -10,8 +10,8 @@ export default function WorkDetail() {
   const [slide, setSlide] = useState(0)
   const [lightbox, setLightbox] = useState(null) // 当前放大的图片对象
 
-  const total = wcSlides.length
-  const go = useCallback((n) => setSlide((s) => Math.min(total - 1, Math.max(0, n))), [total])
+  const pptTotal = (d.ppt && d.ppt.pages) || wcSlides.length || 27
+  const go = useCallback((n) => setSlide((s) => Math.min(pptTotal - 1, Math.max(0, n))), [pptTotal])
 
   // 键盘：← → 翻 PPT，ESC 关闭灯箱
   useEffect(() => {
@@ -25,8 +25,6 @@ export default function WorkDetail() {
   }, [slide, lightbox, go])
 
   useEffect(() => { window.scrollTo(0, 0) }, [])
-
-  const cur = wcSlides[slide]
 
   return (
     <div className="wd">
@@ -63,100 +61,11 @@ export default function WorkDetail() {
         </div>
       </section>
 
-      {/* 视频全播放 */}
-      {d.video && (
-        <section className="wd-section">
-          <div className="container">
-            <div className="wd-sec-head">
-              <span className="wd-sec-no">01</span>
-              <h2 className="wd-sec-title">项目视频</h2>
-              <span className="wd-sec-note">{d.video.label}</span>
-            </div>
-            <div className="wd-video">
-              <video controls preload="metadata" poster={d.video.poster} playsInline>
-                <source src={d.video.src} type="video/mp4" />
-              </video>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* 手册全文浏览（逐页图片，兼容所有设备） */}
-      {d.pdf && (
-        <section className="wd-section">
-          <div className="container">
-            <div className="wd-sec-head">
-              <span className="wd-sec-no">02</span>
-              <h2 className="wd-sec-title">项目手册 · 全文浏览</h2>
-              <span className="wd-sec-note">{d.pdf.meta}</span>
-              <a className="wd-doc-link" href={d.pdf.src} target="_blank" rel="noreferrer">新窗口打开 ↗</a>
-              <a className="wd-doc-link" href={d.pdf.src} download>下载 PDF ↓</a>
-            </div>
-            <div className="wd-pages">
-              {Array.from({ length: d.pdf.pages }, (_, i) => i + 1).map((n) => (
-                <figure className="wd-page" key={n} onClick={() => setLightbox({ src: d.pdf.pageImg(n), alt: `手册第 ${n} 页` })}>
-                  <img src={d.pdf.pageImg(n)} alt={`手册第 ${n} 页`} loading="lazy" />
-                  <figcaption>{n}</figcaption>
-                </figure>
-              ))}
-            </div>
-            <p className="wd-tip">点击任意页面可放大查看 · 完整 PDF 可下载离线阅读</p>
-          </div>
-        </section>
-      )}
-
-      {/* PPT 翻页浏览 */}
-      {d.ppt && (
-        <section className="wd-section">
-          <div className="container">
-            <div className="wd-sec-head">
-              <span className="wd-sec-no">03</span>
-              <h2 className="wd-sec-title">答辩 PPT · 内容速览</h2>
-              <span className="wd-sec-note">{d.ppt.meta}</span>
-              <a className="wd-doc-link" href={d.ppt.src} download>下载完整 PPT ↓</a>
-            </div>
-            <div className="wd-ppt">
-              <div className="wd-ppt-stage">
-                <button className="wd-ppt-nav" onClick={() => go(slide - 1)} disabled={slide === 0} aria-label="上一页">←</button>
-                <div className="wd-ppt-page" key={cur.page}>
-                  <div className="wd-ppt-no">{String(cur.page).padStart(2, '0')} / {total}</div>
-                  <h3 className="wd-ppt-title">{cur.title}</h3>
-                  <ul className="wd-ppt-points">
-                    {cur.points.map((p, i) => {
-                      const [head, ...rest] = p.split('\n')
-                      return (
-                        <li key={i}>
-                          <strong>{head}</strong>
-                          {rest.length > 0 && <span>{rest.join(' ')}</span>}
-                        </li>
-                      )
-                    })}
-                  </ul>
-                  {cur.pics > 0 && <div className="wd-ppt-pics">· 本页含 {cur.pics} 张配图，完整版面请下载 PPT 查看 ·</div>}
-                </div>
-                <button className="wd-ppt-nav" onClick={() => go(slide + 1)} disabled={slide === total - 1} aria-label="下一页">→</button>
-              </div>
-              <div className="wd-ppt-dots">
-                {wcSlides.map((s) => (
-                  <button
-                    key={s.page}
-                    className={`wd-dot ${s.page === cur.page ? 'on' : ''}`}
-                    onClick={() => go(s.page - 1)}
-                    title={`第 ${s.page} 页 ${s.title}`}
-                  />
-                ))}
-              </div>
-              <p className="wd-tip">支持键盘 ← → 翻页 · 页面文字为内容摘要，完整排版请下载 PPT</p>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* 图库 */}
-      <section className="wd-section wd-section-last">
+      {/* 01 作品图库 */}
+      <section className="wd-section">
         <div className="container">
           <div className="wd-sec-head">
-            <span className="wd-sec-no">04</span>
+            <span className="wd-sec-no">01</span>
             <h2 className="wd-sec-title">作品图库</h2>
             <span className="wd-sec-note">{d.gallery.length} 张 · 点击查看大图</span>
           </div>
@@ -170,6 +79,87 @@ export default function WorkDetail() {
           </div>
         </div>
       </section>
+
+      {/* 02 答辩 PPT（原版式逐页浏览） */}
+      {d.ppt && d.ppt.pages && (
+        <section className="wd-section">
+          <div className="container">
+            <div className="wd-sec-head">
+              <span className="wd-sec-no">02</span>
+              <h2 className="wd-sec-title">答辩 PPT · 原版式浏览</h2>
+              <span className="wd-sec-note">{d.ppt.meta}</span>
+              <a className="wd-doc-link" href={d.ppt.src} download>下载完整 PPT ↓</a>
+            </div>
+            <div className="wd-ppt">
+              <div className="wd-ppt-stage">
+                <button className="wd-ppt-nav" onClick={() => go(slide - 1)} disabled={slide === 0} aria-label="上一页">←</button>
+                <div className="wd-ppt-slide" key={slide}>
+                  <img
+                    src={d.ppt.pageImg(slide + 1)}
+                    alt={`PPT 第 ${slide + 1} 页`}
+                    onClick={() => setLightbox({ src: d.ppt.pageImg(slide + 1), alt: `PPT 第 ${slide + 1} 页` })}
+                  />
+                </div>
+                <button className="wd-ppt-nav" onClick={() => go(slide + 1)} disabled={slide === pptTotal - 1} aria-label="下一页">→</button>
+              </div>
+              <div className="wd-ppt-no">第 {String(slide + 1).padStart(2, '0')} / {pptTotal} 页</div>
+              <div className="wd-ppt-dots">
+                {Array.from({ length: pptTotal }, (_, i) => (
+                  <button
+                    key={i}
+                    className={`wd-dot ${i === slide ? 'on' : ''}`}
+                    onClick={() => go(i)}
+                    title={`第 ${i + 1} 页`}
+                  />
+                ))}
+              </div>
+              <p className="wd-tip">支持键盘 ← → 翻页 · 点击当前页可放大 · 完整 PPT 可下载</p>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 03 视频全播放 */}
+      {d.video && (
+        <section className="wd-section">
+          <div className="container">
+            <div className="wd-sec-head">
+              <span className="wd-sec-no">03</span>
+              <h2 className="wd-sec-title">项目视频</h2>
+              <span className="wd-sec-note">{d.video.label}</span>
+            </div>
+            <div className="wd-video">
+              <video controls preload="metadata" poster={d.video.poster} playsInline>
+                <source src={d.video.src} type="video/mp4" />
+              </video>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 04 手册浓缩概览（一行 7 页） */}
+      {d.pdf && (
+        <section className="wd-section wd-section-last">
+          <div className="container">
+            <div className="wd-sec-head">
+              <span className="wd-sec-no">04</span>
+              <h2 className="wd-sec-title">项目手册 · 概览</h2>
+              <span className="wd-sec-note">{d.pdf.meta}</span>
+              <a className="wd-doc-link" href={d.pdf.src} target="_blank" rel="noreferrer">新窗口打开 ↗</a>
+              <a className="wd-doc-link" href={d.pdf.src} download>下载 PDF ↓</a>
+            </div>
+            <div className="wd-pages wd-pages-compact">
+              {Array.from({ length: d.pdf.pages }, (_, i) => i + 1).map((n) => (
+                <figure className="wd-page wd-page-sm" key={n} onClick={() => setLightbox({ src: d.pdf.pageImg(n), alt: `手册第 ${n} 页` })}>
+                  <img src={d.pdf.pageImg(n)} alt={`手册第 ${n} 页`} loading="lazy" />
+                  <figcaption>{n}</figcaption>
+                </figure>
+              ))}
+            </div>
+            <p className="wd-tip">点击任意页面可放大查看 · 完整 PDF 可下载离线阅读</p>
+          </div>
+        </section>
+      )}
 
       {/* 底部 */}
       <footer className="wd-foot">

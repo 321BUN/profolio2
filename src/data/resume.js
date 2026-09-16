@@ -179,7 +179,13 @@ export const portfolio = {
       '一份完整的文创产品策划案：41 页项目手册、27 页答辩 PPT 与 8 分半项目视频，完整呈现从文化选题、市场分析、产品设计到打样布展的全过程。',
     video: { src: `${B}wenchuang-video.mp4`, poster: `${B}wc-video-poster.jpg`, label: '项目视频 · 08:32' },
     pdf: { src: `${B}wenchuang-manual.pdf`, label: '「塔映花城」项目策划手册', meta: '41 页 · 2.9 MB', pages: 41, pageImg: (n) => `${B}wc-manual-${String(n).padStart(2, '0')}.jpg` },
-    ppt: { src: `${B}wenchuang-ppt.pptx`, label: '“塔映花城”异形台历项目策划（答辩 PPT）', meta: '27 页 · 11 MB' },
+    ppt: {
+      src: `${B}wenchuang-ppt.pptx`,
+      label: '“塔映花城”异形台历项目策划（答辩 PPT）',
+      meta: '27 页 · 11 MB',
+      pages: 27,
+      pageImg: (n) => `${B}wc-ppt/${String(n).padStart(2, '0')}.jpg`,
+    },
     gallery: [
       { src: `${B}wc-page-cover.jpg`, alt: '手册封面 · 塔映花城', tag: '手册封面' },
       { src: `${B}wc-poster.jpg`, alt: '项目宣传海报', tag: '宣传海报' },
@@ -203,8 +209,9 @@ export const skills = [
     group: '内容能力',
     lines: [
       '熟悉剪映、PR 等视频剪辑工具，以及 PS、美图秀秀、秀米、可画等制图工具；',
+      '熟悉 Axure 原型设计工具，可完成产品原型与交互设计；',
       '重度社媒用户，深度理解小红书、B 站等平台的内容调性、流量分发逻辑与用户生态；',
-      '网感好，能快速响应热点，并将其转化为契合品牌与产品卖点的内容创意。',
+      '网感好，能快速响应热点，并将其转化为适配游戏卖点的内容创意。',
     ],
   },
   {
