@@ -229,7 +229,7 @@ mark.hl {
 }
 .hero-scrim {
   position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(180deg, rgba(246,244,239,0.30) 0%, rgba(246,244,239,0.10) 35%, rgba(246,244,239,0.72) 88%, var(--paper) 100%);
+  background: linear-gradient(180deg, rgba(247,246,243,0.14) 0%, rgba(247,246,243,0.05) 35%, rgba(247,246,243,0.48) 82%, rgba(247,246,243,0.90) 100%);
 }
 .hero-content { position: relative; z-index: 2; width: 100%; padding-bottom: clamp(60px, 8vw, 110px); }
 .hero-eyebrow {
