@@ -66,7 +66,7 @@ export default function About({ query }) {
         {/* 技能与评价 */}
         <div id="skills" style={{ marginTop: 'clamp(60px,7vw,110px)' }}>
           <div className="mini-title">Skills & Self · 技能与评价</div>
-          <div className="skills-grid">
+          <div className="skills-block">
             {skills.map((s) => (
               <div className="skill-item" key={s.group}>
                 <div className="sg">{s.group}</div>
