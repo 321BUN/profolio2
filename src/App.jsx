@@ -4,10 +4,11 @@ import Hero from './components/Hero'
 import About from './components/About'
 import Experience from './components/Experience'
 import Campus from './components/Campus'
+import Works from './components/Works'
 import Contact from './components/Contact'
 import WorkDetail from './components/WorkDetail'
 
-const SECTION_IDS = ['home', 'about', 'experience', 'project', 'campus', 'contact']
+const SECTION_IDS = ['home', 'about', 'experience', 'project', 'campus', 'works', 'contact']
 
 const getWorkRoute = () => {
   const h = window.location.hash
@@ -78,6 +79,7 @@ export default function App() {
         <About query={query} />
         <Experience query={query} />
         <Campus query={query} />
+        <Works query={query} />
         <Contact />
       </main>
     </>

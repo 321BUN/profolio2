@@ -53,7 +53,7 @@ export const internships = [
       '主导常驻活动改版与 4 场+ 线上运营活动落地，以竞品分析持续优化运营策略。',
     highlights: [
       '活动策划与机制设计：主导完成常驻活动改版，通过重构榜单机制与多层级任务体系拉动参与，设计分层激励及付费点，活动上线后日均流水提升 36%；围绕营收、停留时长、社交关系链三类目标协助推进 4 场+ 活动落地，负责前期策划与内容宣发，统筹活动执行进度，协助跨部门资源配置。',
-      '竞品追踪与分析：追踪同类游戏化社交产品的活动玩法与用户反馈，输出竞品分析报告并持续优化策略，提炼可复用策略并推动落地。',
+      '竞品追踪与分析：追踪同类游戏化社交产品，调研约 30 款小游戏，拆解玩法机制、用户反馈与付费点；输出 AI 主播运营工具竞品分析报告并持续优化策略，提炼可复用策略并推动落地。',
     ],
     metrics: [
       { k: '日均流水', v: '+36%' },
@@ -239,7 +239,7 @@ export const skills = [
       '熟悉剪映、PR 等视频剪辑工具，以及 PS、美图秀秀、秀米、可画等制图工具；',
       '熟悉 Axure 原型设计工具，可完成产品原型与交互设计；',
       '重度社媒用户，深度理解小红书、B 站等平台的内容调性、流量分发逻辑与用户生态；',
-      '网感好，能快速响应热点，并将其转化为适配游戏卖点的内容创意。',
+      '网感好，能快速响应热点并转化为创意内容。',
     ],
   },
   {
@@ -310,7 +310,12 @@ export const searchSections = [
   },
   { id: 'experience', label: '实习经历', text: listText(internships) },
   { id: 'project', label: '项目经历', text: listText(projects) },
-  { id: 'campus', label: '校园经历', text: [...campus, portfolio, aigcAccount].map(itemText).join(' ') },
+  { id: 'campus', label: '校园经历', text: campus.map(itemText).join(' ') },
+  {
+    id: 'works',
+    label: '作品集',
+    text: [itemText(portfolio), itemText(aigcAccount)].join(' '),
+  },
   {
     id: 'skills',
     label: '技能与评价',

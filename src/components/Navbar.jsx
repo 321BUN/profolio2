@@ -6,6 +6,7 @@ const LINKS = [
   { id: 'experience', label: '实习' },
   { id: 'project', label: '项目' },
   { id: 'campus', label: '校园' },
+  { id: 'works', label: '作品' },
   { id: 'contact', label: '联系' },
 ]
 
