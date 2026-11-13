@@ -1,5 +1,5 @@
 import Highlight from './Highlight'
-import { portfolio, aigcAccount } from '../data/resume'
+import { portfolio, accounts } from '../data/resume'
 
 export default function Works({ query }) {
   return (
@@ -60,45 +60,30 @@ export default function Works({ query }) {
           </div>
         </article>
 
-        {/* AIGC 自媒体账号 */}
-        <article className="wc-card" id="aigc">
-          <div className="wc-badge">{aigcAccount.badge}</div>
+        {/* 个人账号运营 */}
+        <article className="wc-card" id="account">
+          <div className="wc-badge">Account · 个人账号</div>
           <div className="wc-grid">
             <div className="wc-body">
               <div className="wc-title">
-                <Highlight text={aigcAccount.name} query={query} />
+                <Highlight text={accounts.title} query={query} />
               </div>
-              <div className="wc-meta">{aigcAccount.meta}</div>
-              <p className="wc-summary"><Highlight text={aigcAccount.summary} query={query} /></p>
-              <div className="exp-tags">
-                {aigcAccount.tags.map((t) => (
-                  <span className="tag" key={t}><Highlight text={t} query={query} /></span>
+              <div className="wc-meta">{accounts.meta}</div>
+              <p className="wc-summary"><Highlight text={accounts.summary} query={query} /></p>
+              <div className="exp-metrics" style={{ paddingTop: 10 }}>
+                {accounts.metrics.map((m) => (
+                  <div className="metric" key={m.k}>
+                    <div className="mv">{m.v}</div>
+                    <div className="mk">{m.k}</div>
+                  </div>
                 ))}
               </div>
-              <ul className="exp-highlights">
-                {aigcAccount.highlights.map((h, i) => (
-                  <li key={i}><Highlight text={h} query={query} /></li>
-                ))}
-              </ul>
-              <div className="wc-hint">小红书号 49624163325 · 动态视频内容 · 持续更新</div>
             </div>
-            <a className="aigc-panel" href={aigcAccount.link} target="_blank" rel="noreferrer" title="访问小红书主页">
-              <span
-                className="aigc-marquee"
-                style={{ backgroundImage: `url(${aigcAccount.covers})` }}
-                role="img"
-                aria-label="「转念花开」笔记封面滚动预览"
-              />
-              <span className="aigc-kicker">Xiaohongshu · 小红书</span>
-              <span className="aigc-name">转念花开</span>
-              <span className="aigc-sign">「{aigcAccount.sign}」</span>
-              <div className="aigc-stats">
-                {aigcAccount.metrics.map((m) => (
-                  <div key={m.k}><b>{m.v}</b><i>{m.k}</i></div>
-                ))}
-              </div>
-              <span className="aigc-go">访问主页 →</span>
-            </a>
+            <div className="wc-imgs">
+              <figure className="wc-fig">
+                <img src={accounts.cover} alt={accounts.coverAlt} />
+              </figure>
+            </div>
           </div>
         </article>
       </div>
