@@ -16,9 +16,10 @@ export default function About({ query }) {
         </div>
 
         <div className="about-grid">
-          {/* 头像 / 人物图 */}
+          {/* 可交互 Q 版形象（透明背景，悬停挥手 wink 打招呼） */}
+          {/* 静态 Q 版形象：透明背景，直接融入页面底色 */}
           <div className="portrait">
-            <img src={portraitImg} alt={`${profile.name} 个人照片`} />
+            <img src={portraitImg} alt={`${profile.name} 个人形象`} />
           </div>
 
           <div className="about-bio">
@@ -66,7 +67,7 @@ export default function About({ query }) {
         {/* 技能与评价 */}
         <div id="skills" style={{ marginTop: 'clamp(60px,7vw,110px)' }}>
           <div className="mini-title">Skills & Self · 技能与评价</div>
-          <div className="skills-grid">
+          <div className="skills-block">
             {skills.map((s) => (
               <div className="skill-item" key={s.group}>
                 <div className="sg">{s.group}</div>
